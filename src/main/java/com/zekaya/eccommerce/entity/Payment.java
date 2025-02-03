@@ -22,6 +22,7 @@ public class Payment {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at")//created time of payment
     private final LocalDateTime createdAt= LocalDateTime.now();
+
 }
