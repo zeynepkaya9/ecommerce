@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -20,7 +19,7 @@ import java.io.IOException;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class JwtAuthFiller extends OncePerRequestFilter {
+public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtils jwUtils;
     private final CustomUserDetailService customUserDetailService;
 
