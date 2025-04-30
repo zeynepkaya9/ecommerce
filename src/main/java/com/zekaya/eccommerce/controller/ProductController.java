@@ -36,4 +36,46 @@ public class ProductController {
         return ResponseEntity.ok(productService.createProduct(categoryId, image, name, description, price));
 
     }
+
+    @PostMapping("/update/{productId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Response> updateProduct(
+            @RequestParam Long productId,
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) MultipartFile image,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) BigDecimal price
+    ){
+        return ResponseEntity.ok(productService.updateProduct(productId, categoryId, image, name, description, price));
+
+    }
+
+    @DeleteMapping("/delete/{productId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public  ResponseEntity<Response> deleteProduct(@PathVariable Long productId){
+        return ResponseEntity.ok(productService.deleteProduct(productId));
+    }
+
+    @GetMapping("/get-all-product-id/{productId}")
+    public  ResponseEntity<Response> getProductById(@PathVariable Long productId){
+        return ResponseEntity.ok(productService.getProductById(productId));
+    }
+
+    @GetMapping("/get-all")
+    public  ResponseEntity<Response> getAllProducts(){
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/get-by-category-id/{categoryId}")
+    public  ResponseEntity<Response> getProductsByCategory(@PathVariable Long categoryId){
+        return ResponseEntity.ok(productService.getProductByCategory(categoryId));
+    }
+
+    @GetMapping("/search")
+    public  ResponseEntity<Response> searchForProducts(@RequestParam String searchValue){
+        return ResponseEntity.ok(productService.searchProduct(searchValue));
+    }
+
+
 }
