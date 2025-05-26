@@ -14,12 +14,11 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailService implements UserDetailsService {
 
     private final UserRepo userRepo;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepo.findByEmail(username)
-                .orElseThrow(()-> new NotFoundException("User / Email not found"));
+                .orElseThrow(()-> new NotFoundException("User/ Email Not found"));
 
         return AuthUser.builder()
                 .user(user)
